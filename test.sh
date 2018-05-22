@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 echo "Starting prebuild script!"
 echo "Working directory: $PWD"
