@@ -1,1 +1,1 @@
-Empty text
+Empty textSample.txt contents:

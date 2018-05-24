@@ -1,0 +1,668 @@
+{
+    "targets": [
+        {
+            "name": "androidDependencies",
+            "group": "Android"
+        },
+        {
+            "name": "assemble",
+            "group": "build"
+        },
+        {
+            "name": "assembleAndroidTest",
+            "group": "build"
+        },
+        {
+            "name": "assembleDebug",
+            "group": "build"
+        },
+        {
+            "name": "assembleDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "assembleDebugUnitTest",
+            "group": null
+        },
+        {
+            "name": "assembleRelease",
+            "group": "build"
+        },
+        {
+            "name": "assembleReleaseUnitTest",
+            "group": null
+        },
+        {
+            "name": "buildDependents",
+            "group": "build"
+        },
+        {
+            "name": "buildNeeded",
+            "group": "build"
+        },
+        {
+            "name": "bundleAppClassesDebug",
+            "group": null
+        },
+        {
+            "name": "bundleAppClassesDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "bundleAppClassesDebugUnitTest",
+            "group": null
+        },
+        {
+            "name": "bundleAppClassesRelease",
+            "group": null
+        },
+        {
+            "name": "bundleAppClassesReleaseUnitTest",
+            "group": null
+        },
+        {
+            "name": "check",
+            "group": "verification"
+        },
+        {
+            "name": "checkDebugManifest",
+            "group": null
+        },
+        {
+            "name": "checkReleaseManifest",
+            "group": null
+        },
+        {
+            "name": "clean",
+            "group": "build"
+        },
+        {
+            "name": "cleanBuildCache",
+            "group": "build"
+        },
+        {
+            "name": "compileDebugAidl",
+            "group": null
+        },
+        {
+            "name": "compileDebugAndroidTestAidl",
+            "group": null
+        },
+        {
+            "name": "compileDebugAndroidTestJavaWithJavac",
+            "group": null
+        },
+        {
+            "name": "compileDebugAndroidTestNdk",
+            "group": null
+        },
+        {
+            "name": "compileDebugAndroidTestRenderscript",
+            "group": null
+        },
+        {
+            "name": "compileDebugAndroidTestShaders",
+            "group": null
+        },
+        {
+            "name": "compileDebugAndroidTestSources",
+            "group": "build"
+        },
+        {
+            "name": "compileDebugJavaWithJavac",
+            "group": null
+        },
+        {
+            "name": "compileDebugNdk",
+            "group": null
+        },
+        {
+            "name": "compileDebugRenderscript",
+            "group": null
+        },
+        {
+            "name": "compileDebugShaders",
+            "group": null
+        },
+        {
+            "name": "compileDebugSources",
+            "group": "build"
+        },
+        {
+            "name": "compileDebugUnitTestJavaWithJavac",
+            "group": null
+        },
+        {
+            "name": "compileDebugUnitTestSources",
+            "group": "build"
+        },
+        {
+            "name": "compileLint",
+            "group": null
+        },
+        {
+            "name": "compileReleaseAidl",
+            "group": null
+        },
+        {
+            "name": "compileReleaseJavaWithJavac",
+            "group": null
+        },
+        {
+            "name": "compileReleaseNdk",
+            "group": null
+        },
+        {
+            "name": "compileReleaseRenderscript",
+            "group": null
+        },
+        {
+            "name": "compileReleaseShaders",
+            "group": null
+        },
+        {
+            "name": "compileReleaseSources",
+            "group": "build"
+        },
+        {
+            "name": "compileReleaseUnitTestJavaWithJavac",
+            "group": null
+        },
+        {
+            "name": "compileReleaseUnitTestSources",
+            "group": "build"
+        },
+        {
+            "name": "connectedAndroidTest",
+            "group": "verification"
+        },
+        {
+            "name": "connectedCheck",
+            "group": "verification"
+        },
+        {
+            "name": "connectedDebugAndroidTest",
+            "group": "verification"
+        },
+        {
+            "name": "consumeConfigAttr",
+            "group": null
+        },
+        {
+            "name": "createDebugCompatibleScreenManifests",
+            "group": null
+        },
+        {
+            "name": "createReleaseCompatibleScreenManifests",
+            "group": null
+        },
+        {
+            "name": "deviceAndroidTest",
+            "group": "verification"
+        },
+        {
+            "name": "deviceCheck",
+            "group": "verification"
+        },
+        {
+            "name": "extractProguardFiles",
+            "group": null
+        },
+        {
+            "name": "generateDebugAndroidTestAssets",
+            "group": null
+        },
+        {
+            "name": "generateDebugAndroidTestBuildConfig",
+            "group": null
+        },
+        {
+            "name": "generateDebugAndroidTestResValues",
+            "group": null
+        },
+        {
+            "name": "generateDebugAndroidTestResources",
+            "group": null
+        },
+        {
+            "name": "generateDebugAndroidTestSources",
+            "group": null
+        },
+        {
+            "name": "generateDebugAssets",
+            "group": null
+        },
+        {
+            "name": "generateDebugBuildConfig",
+            "group": null
+        },
+        {
+            "name": "generateDebugResValues",
+            "group": null
+        },
+        {
+            "name": "generateDebugResources",
+            "group": null
+        },
+        {
+            "name": "generateDebugSources",
+            "group": null
+        },
+        {
+            "name": "generateReleaseAssets",
+            "group": null
+        },
+        {
+            "name": "generateReleaseBuildConfig",
+            "group": null
+        },
+        {
+            "name": "generateReleaseResValues",
+            "group": null
+        },
+        {
+            "name": "generateReleaseResources",
+            "group": null
+        },
+        {
+            "name": "generateReleaseSources",
+            "group": null
+        },
+        {
+            "name": "installDebug",
+            "group": "Install"
+        },
+        {
+            "name": "installDebugAndroidTest",
+            "group": "Install"
+        },
+        {
+            "name": "javaPreCompileDebug",
+            "group": null
+        },
+        {
+            "name": "javaPreCompileDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "javaPreCompileDebugUnitTest",
+            "group": null
+        },
+        {
+            "name": "javaPreCompileRelease",
+            "group": null
+        },
+        {
+            "name": "javaPreCompileReleaseUnitTest",
+            "group": null
+        },
+        {
+            "name": "lint",
+            "group": "verification"
+        },
+        {
+            "name": "lintDebug",
+            "group": "verification"
+        },
+        {
+            "name": "lintRelease",
+            "group": "verification"
+        },
+        {
+            "name": "lintVitalRelease",
+            "group": "verification"
+        },
+        {
+            "name": "mergeDebugAndroidTestAssets",
+            "group": null
+        },
+        {
+            "name": "mergeDebugAndroidTestJniLibFolders",
+            "group": null
+        },
+        {
+            "name": "mergeDebugAndroidTestResources",
+            "group": null
+        },
+        {
+            "name": "mergeDebugAndroidTestShaders",
+            "group": null
+        },
+        {
+            "name": "mergeDebugAssets",
+            "group": null
+        },
+        {
+            "name": "mergeDebugJniLibFolders",
+            "group": null
+        },
+        {
+            "name": "mergeDebugResources",
+            "group": null
+        },
+        {
+            "name": "mergeDebugShaders",
+            "group": null
+        },
+        {
+            "name": "mergeReleaseAssets",
+            "group": null
+        },
+        {
+            "name": "mergeReleaseJniLibFolders",
+            "group": null
+        },
+        {
+            "name": "mergeReleaseResources",
+            "group": null
+        },
+        {
+            "name": "mergeReleaseShaders",
+            "group": null
+        },
+        {
+            "name": "mockableAndroidJar",
+            "group": "build"
+        },
+        {
+            "name": "nevercodePlugin",
+            "group": "NevercodePlugin"
+        },
+        {
+            "name": "packageDebug",
+            "group": null
+        },
+        {
+            "name": "packageDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "packageRelease",
+            "group": null
+        },
+        {
+            "name": "platformAttrExtractor",
+            "group": null
+        },
+        {
+            "name": "preBuild",
+            "group": null
+        },
+        {
+            "name": "preDebugAndroidTestBuild",
+            "group": null
+        },
+        {
+            "name": "preDebugBuild",
+            "group": null
+        },
+        {
+            "name": "preDebugUnitTestBuild",
+            "group": null
+        },
+        {
+            "name": "preReleaseBuild",
+            "group": null
+        },
+        {
+            "name": "preReleaseUnitTestBuild",
+            "group": null
+        },
+        {
+            "name": "prepareLintJar",
+            "group": null
+        },
+        {
+            "name": "processDebugAndroidTestJavaRes",
+            "group": null
+        },
+        {
+            "name": "processDebugAndroidTestManifest",
+            "group": null
+        },
+        {
+            "name": "processDebugAndroidTestResources",
+            "group": null
+        },
+        {
+            "name": "processDebugJavaRes",
+            "group": null
+        },
+        {
+            "name": "processDebugManifest",
+            "group": null
+        },
+        {
+            "name": "processDebugResources",
+            "group": null
+        },
+        {
+            "name": "processDebugUnitTestJavaRes",
+            "group": null
+        },
+        {
+            "name": "processReleaseJavaRes",
+            "group": null
+        },
+        {
+            "name": "processReleaseManifest",
+            "group": null
+        },
+        {
+            "name": "processReleaseResources",
+            "group": null
+        },
+        {
+            "name": "processReleaseUnitTestJavaRes",
+            "group": null
+        },
+        {
+            "name": "resolveConfigAttr",
+            "group": null
+        },
+        {
+            "name": "signingReport",
+            "group": "Android"
+        },
+        {
+            "name": "sourceSets",
+            "group": "Android"
+        },
+        {
+            "name": "splitsDiscoveryTaskDebug",
+            "group": null
+        },
+        {
+            "name": "splitsDiscoveryTaskDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "splitsDiscoveryTaskRelease",
+            "group": null
+        },
+        {
+            "name": "test",
+            "group": "verification"
+        },
+        {
+            "name": "testDebugUnitTest",
+            "group": "verification"
+        },
+        {
+            "name": "testReleaseUnitTest",
+            "group": "verification"
+        },
+        {
+            "name": "transformClassesWithDexBuilderForDebug",
+            "group": null
+        },
+        {
+            "name": "transformClassesWithDexBuilderForDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "transformClassesWithPreDexForRelease",
+            "group": null
+        },
+        {
+            "name": "transformDexArchiveWithDexMergerForDebug",
+            "group": null
+        },
+        {
+            "name": "transformDexArchiveWithDexMergerForDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "transformDexArchiveWithExternalLibsDexMergerForDebug",
+            "group": null
+        },
+        {
+            "name": "transformDexArchiveWithExternalLibsDexMergerForDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "transformDexWithDexForRelease",
+            "group": null
+        },
+        {
+            "name": "transformNativeLibsWithMergeJniLibsForDebug",
+            "group": null
+        },
+        {
+            "name": "transformNativeLibsWithMergeJniLibsForDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "transformNativeLibsWithMergeJniLibsForRelease",
+            "group": null
+        },
+        {
+            "name": "transformNativeLibsWithStripDebugSymbolForDebug",
+            "group": null
+        },
+        {
+            "name": "transformNativeLibsWithStripDebugSymbolForRelease",
+            "group": null
+        },
+        {
+            "name": "transformResourcesWithMergeJavaResForDebug",
+            "group": null
+        },
+        {
+            "name": "transformResourcesWithMergeJavaResForDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "transformResourcesWithMergeJavaResForDebugUnitTest",
+            "group": null
+        },
+        {
+            "name": "transformResourcesWithMergeJavaResForRelease",
+            "group": null
+        },
+        {
+            "name": "transformResourcesWithMergeJavaResForReleaseUnitTest",
+            "group": null
+        },
+        {
+            "name": "uninstallAll",
+            "group": "Install"
+        },
+        {
+            "name": "uninstallDebug",
+            "group": "Install"
+        },
+        {
+            "name": "uninstallDebugAndroidTest",
+            "group": "Install"
+        },
+        {
+            "name": "uninstallRelease",
+            "group": "Install"
+        },
+        {
+            "name": "validateSigningDebug",
+            "group": null
+        },
+        {
+            "name": "validateSigningDebugAndroidTest",
+            "group": null
+        },
+        {
+            "name": "writeDebugApplicationId",
+            "group": null
+        },
+        {
+            "name": "writeReleaseApplicationId",
+            "group": null
+        }
+    ],
+    "name": "app",
+    "rootProjectDir": "/Users/greenhouse/tmpfE4LOU",
+    "projectDir": "/Users/greenhouse/tmpfE4LOU/app",
+    "buildFile": "/Users/greenhouse/tmpfE4LOU/app/build.gradle",
+    "unitTestResultsDir": "/Users/greenhouse/tmpfE4LOU/app/build/test-results",
+    "uiTestResultsDir": "/Users/greenhouse/tmpfE4LOU/app/build/outputs/androidTest-results",
+    "buildDir": "/Users/greenhouse/tmpfE4LOU/app/build",
+    "uiTestCommand": "connectedAndroidTest",
+    "compileSdkVersion": "android-26",
+    "sourceSets": {
+        "unitTest": {
+            "available": true
+        },
+        "androidTest": {
+            "available": true
+        },
+        "instrumentTest": {
+            "available": false
+        }
+    },
+    "productFlavors": {
+        "main": {
+            "manifestPath": "/Users/greenhouse/tmpfE4LOU/app/src/main/AndroidManifest.xml",
+            "minSdkVersion": {
+                "codename": null,
+                "apiLevel": 16,
+                "apiString": "16"
+            },
+            "targetSdkVersion": {
+                "codename": null,
+                "apiLevel": 26,
+                "apiString": "26"
+            },
+            "versionCode": 1,
+            "versionName": "1.0"
+        }
+    },
+    "subprojects": [
+        
+    ],
+    "applicationVariants": [
+        {
+            "name": "debug",
+            "assembleTaskName": "assembleDebug",
+            "testTaskName": "assembleDebugAndroidTest",
+            "signingReady": true,
+            "flavorName": "",
+            "testOutputs": [
+                "/Users/greenhouse/tmpfE4LOU/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+            ],
+            "buildOutputs": [
+                "/Users/greenhouse/tmpfE4LOU/app/build/outputs/apk/debug/app-debug.apk"
+            ]
+        },
+        {
+            "name": "release",
+            "assembleTaskName": "assembleRelease",
+            "testTaskName": null,
+            "signingReady": false,
+            "flavorName": "",
+            "testOutputs": [
+                
+            ],
+            "buildOutputs": [
+                "/Users/greenhouse/tmpfE4LOU/app/build/outputs/apk/release/app-release-unsigned.apk"
+            ]
+        }
+    ]
+}

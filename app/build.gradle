@@ -29,3 +29,227 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
+apply plugin: NevercodePlugin
+
+import groovy.json.JsonOutput
+
+class NevercodePlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.task("nevercodePlugin") {
+            doLast {
+                group = "NevercodePlugin"
+                description = "Nevercode plugin to extract project metadata"
+
+                def map = [
+                        targets: project.getTasks().collect { [name: it.getName(), group: it.getGroup()] },
+                        name: project.getName(),
+                        rootProjectDir: project.rootProject.getProjectDir().getAbsolutePath(),
+                        projectDir: project.getProjectDir().getAbsolutePath(),
+                        buildFile: project.buildFile.getAbsolutePath(),
+                        unitTestResultsDir: null,
+                        uiTestResultsDir: null,
+                        buildDir: null,
+                        uiTestCommand: null,
+                        compileSdkVersion: null,
+                        sourceSets: [
+                            unitTest: [available: false],
+                            androidTest: [available: false],
+                            instrumentTest: [available: false]
+                        ],
+                        productFlavors: [
+                            main: [
+                                manifestPath: null,
+                                minSdkVersion: null,
+                                targetSdkVersion: null,
+                                versionCode: null,
+                                versionName: null
+                            ]
+                        ],
+                        subprojects: [],
+                        applicationVariants: []
+                ]
+                map.buildDir = project.buildDir.getAbsolutePath()
+
+                if (project.hasProperty("subprojects")) {
+                    project.subprojects.each { subproject ->
+                        map.subprojects.add([
+                            name: subproject.name,
+                            buildDir: subproject.buildDir.getAbsolutePath(),
+                        ])
+                    }
+                }
+
+                if (project.hasProperty("sourceSets") && project.sourceSets.hasProperty("test")) {
+                    map.sourceSets.unitTest = [
+                        available: !project.sourceSets.test.java.isEmpty()
+                    ]
+                    map.unitTestResultsDir = project.testResultsDir.getAbsolutePath()
+                }
+                if (project.hasProperty("android")) {
+                    map.productFlavors.main.manifestPath = String.valueOf(project.android.sourceSets.main.getManifest().getSrcFile())
+                    if (project.android.hasProperty("defaultConfig")) {
+                        map.productFlavors.main.minSdkVersion = project.android.defaultConfig.minSdkVersion
+                        map.productFlavors.main.targetSdkVersion = project.android.defaultConfig.targetSdkVersion
+                        map.productFlavors.main.versionName = project.android.defaultConfig.versionName
+                        map.productFlavors.main.versionCode = project.android.defaultConfig.versionCode
+                    }
+
+                    if (project.android.hasProperty("compileSdkVersion")) {
+                        map.compileSdkVersion = project.android.compileSdkVersion
+                    }
+
+                    if (project.android.hasProperty("productFlavors")) {
+                        def sourceSets = (project.android.hasProperty("sourceSets")) ? project.android.sourceSets : []
+
+                        project.android.productFlavors.each { flavor ->
+                            map.productFlavors."$flavor.name" = [
+                                minSdkVersion: flavor.minSdkVersion,
+                                targetSdkVersion: flavor.targetSdkVersion,
+                                versionCode: flavor.versionCode,
+                                versionName: flavor.versionName,
+                                manifestPath: null
+                            ]
+                            def flavorSrcSet = sourceSets.find { flavor.name == it.name }
+                            if (flavorSrcSet) {
+                                def manifestFile = flavorSrcSet.getManifest().getSrcFile()
+                                if (manifestFile.exists()) {
+                                    map.productFlavors."$flavor.name".manifestPath = String.valueOf(manifestFile)
+                                }
+                            }
+                        }
+                    }
+
+                    def isEmptySourceSet = { sourceSet ->
+                        def kotlinEmpty = true;
+                        if (sourceSet.hasProperty("kotlin")) {
+                            sourceSet.kotlin.srcDirs += 'src/test/java'
+                            kotlinEmpty = sourceSet.kotlin.empty
+                        }
+                        return sourceSet.java.sourceFiles.isEmpty() && kotlinEmpty;
+                    }
+
+                    def availableTestSourceSet = project.android.sourceSets.find { sourceSet ->
+                        sourceSet.name.startsWith("test") && !isEmptySourceSet(sourceSet)
+                    }
+                    if (availableTestSourceSet) {
+                        map.sourceSets.unitTest = [ available: true ]
+                        map.unitTestResultsDir = project.testResultsDir.getAbsolutePath()
+                    }
+
+                    if (project.android.sourceSets.hasProperty("androidTest")) {
+                        def androidTestSourceFiles, kotlinTestSourceFilesIsEmpty
+                        // add kotlin file pattern for the case when user defined a kotlin source set in the java project
+                        // otherwise we won't be able to detect kotlin files
+                        project.android.sourceSets.androidTest.java.include("**/*.kt")
+                        if (project.android.sourceSets.androidTest.java.hasProperty("sourceFiles")) {
+                            androidTestSourceFiles = project.android.sourceSets.androidTest.java.sourceFiles
+                        } else {
+                            androidTestSourceFiles = project.android.sourceSets.androidTest.java.source.findAll {
+                                it instanceof File ? it.exists() : (new File(it)).exists()
+                            }
+                        }
+
+                        if (project.android.sourceSets.androidTest.hasProperty("kotlin")) {
+                            project.android.sourceSets.androidTest.kotlin.srcDirs += 'src/androidTest/java'
+                            kotlinTestSourceFilesIsEmpty = project.android.sourceSets.androidTest.kotlin.empty
+                        } else {
+                            kotlinTestSourceFilesIsEmpty = true
+                        }
+
+                        def uiTestsAvailable = !androidTestSourceFiles.isEmpty() || !kotlinTestSourceFilesIsEmpty
+                        map.sourceSets.androidTest = [available: uiTestsAvailable]
+                        if (uiTestsAvailable) {
+                            map.uiTestCommand = "connectedAndroidTest"
+                        }
+                    } else if (project.android.sourceSets.hasProperty("instrumentTest")) {
+                        def instrumentTestSourceFiles
+                        if (project.android.sourceSets.instrumentTest.java.hasProperty("sourceFiles")) {
+                            instrumentTestSourceFiles = project.android.sourceSets.instrumentTest.java.sourceFiles
+                        } else {
+                            instrumentTestSourceFiles = project.android.sourceSets.instrumentTest.java.source.findAll {
+                                it instanceof File ? it.exists() : (new File(it)).exists()
+                            }
+                        }
+
+                        def instrumentTestsAvailable = !instrumentTestSourceFiles.isEmpty()
+                        map.sourceSets.instrumentTest = [available: instrumentTestsAvailable]
+                        if (instrumentTestsAvailable) {
+                            map.uiTestCommand = "connectedInstrumentTest"
+                        }
+                    }
+                    map.uiTestResultsDir = project.android.testOptions.resultsDir
+                    if (!map.uiTestResultsDir) {
+                        // User has not overridden resultsDir value
+                        def resultsDir = (map.uiTestCommand == "connectedInstrumentTest") ? "instrumentTest-results" : "androidTest-results"
+                        map.uiTestResultsDir = project.buildDir.getAbsolutePath() + "/outputs/" + resultsDir
+                    }
+                    if (project.android.hasProperty("applicationVariants")) {
+                        def outputFileFilter = { output ->
+                            try {
+                                output.outputFile != null
+                            } catch (e) {
+                                println "Failed to get build outputs for ${it}: ${e}"
+                                false
+                            }
+                        }
+
+                        def outputFileClosure = { output ->
+                            try {
+                                output.outputFile.path
+                            } catch (e) {
+                                println "Failed to get outputs for ${it}: ${e}"
+                                null
+                            }
+                        }
+
+                        project.android.applicationVariants.each { variant ->
+                            def testVariant = variant.testVariant
+
+                            def testOutputs = []
+                            if (testVariant != null && testVariant.hasProperty('outputs')) {
+                                testOutputs = testVariant.outputs.findAll(outputFileFilter).collect(outputFileClosure)
+                            }
+                            def buildOutputs = []
+                            if (variant.hasProperty('outputs')) {
+                                buildOutputs = variant.outputs.findAll(outputFileFilter).collect(outputFileClosure)
+                            }
+
+                            map.applicationVariants.add([
+                                name: variant.name,
+                                assembleTaskName: variant.assemble.name,
+                                testTaskName: (testVariant != null) ? testVariant.assemble.name : null,
+                                signingReady: variant.signingReady,
+                                flavorName: variant.hasProperty('flavorName') ? variant.flavorName : null,
+                                testOutputs: testOutputs,
+                                buildOutputs: buildOutputs
+                            ])
+                        }
+                    }
+                }
+
+                def json = JsonOutput.prettyPrint(JsonOutput.toJson(map))
+                def dirName = project.buildscript.sourceFile.getParent();
+
+                def outputFile = new File("$dirName/plugin.json")
+                outputFile.write(JsonOutput.prettyPrint(json))
+            }
+        }
+    }
+}
+try {
+    com.android.ddmlib.DdmPreferences.setTimeOut(120000)
+} catch (Exception ignored) {
+    // Do nothing
+}
+
+            gradle.taskGraph.whenReady { taskGraph ->
+                def tasks = taskGraph.getAllTasks()
+                def buildTasks = tasks.find { it.name.startsWith('build') && it.getGroup() == 'build' }
+                if (buildTasks) {
+                    tasks.findAll {it.name.startsWith('test')}.each { task ->
+                        task.enabled = false
+                    }
+                }
+            }
+            
