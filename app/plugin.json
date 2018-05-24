@@ -598,12 +598,12 @@
         }
     ],
     "name": "app",
-    "rootProjectDir": "/Users/greenhouse/tmpkO0wGX",
-    "projectDir": "/Users/greenhouse/tmpkO0wGX/app",
-    "buildFile": "/Users/greenhouse/tmpkO0wGX/app/build.gradle",
-    "unitTestResultsDir": "/Users/greenhouse/tmpkO0wGX/app/build/test-results",
-    "uiTestResultsDir": "/Users/greenhouse/tmpkO0wGX/app/build/outputs/androidTest-results",
-    "buildDir": "/Users/greenhouse/tmpkO0wGX/app/build",
+    "rootProjectDir": "/Users/greenhouse/tmpuyJNia",
+    "projectDir": "/Users/greenhouse/tmpuyJNia/app",
+    "buildFile": "/Users/greenhouse/tmpuyJNia/app/build.gradle",
+    "unitTestResultsDir": "/Users/greenhouse/tmpuyJNia/app/build/test-results",
+    "uiTestResultsDir": "/Users/greenhouse/tmpuyJNia/app/build/outputs/androidTest-results",
+    "buildDir": "/Users/greenhouse/tmpuyJNia/app/build",
     "uiTestCommand": "connectedAndroidTest",
     "compileSdkVersion": "android-26",
     "sourceSets": {
@@ -619,7 +619,7 @@
     },
     "productFlavors": {
         "main": {
-            "manifestPath": "/Users/greenhouse/tmpkO0wGX/app/src/main/AndroidManifest.xml",
+            "manifestPath": "/Users/greenhouse/tmpuyJNia/app/src/main/AndroidManifest.xml",
             "minSdkVersion": {
                 "codename": null,
                 "apiLevel": 16,
@@ -645,10 +645,10 @@
             "signingReady": true,
             "flavorName": "",
             "testOutputs": [
-                "/Users/greenhouse/tmpkO0wGX/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+                "/Users/greenhouse/tmpuyJNia/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
             ],
             "buildOutputs": [
-                "/Users/greenhouse/tmpkO0wGX/app/build/outputs/apk/debug/app-debug.apk"
+                "/Users/greenhouse/tmpuyJNia/app/build/outputs/apk/debug/app-debug.apk"
             ]
         },
         {
@@ -661,7 +661,7 @@
                 
             ],
             "buildOutputs": [
-                "/Users/greenhouse/tmpkO0wGX/app/build/outputs/apk/release/app-release-unsigned.apk"
+                "/Users/greenhouse/tmpuyJNia/app/build/outputs/apk/release/app-release-unsigned.apk"
             ]
         }
     ]
