@@ -1,1 +1,2 @@
 textSample.txt contents:
+Sample.txt contents:
