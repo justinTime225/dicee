@@ -1,1 +1,1 @@
-Empty textSample.txt contents:
+textSample.txt contents:
