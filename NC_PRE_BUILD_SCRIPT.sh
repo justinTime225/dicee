@@ -3,6 +3,7 @@ echo "Starting prebuild script!"
 echo "Working directory: $PWD"
 
 echo "Patching sample.txt...."
+echo $NEVERCODE_BRANCH
 
 echo "Sample.txt contents:" >> sample.txt
 echo $NEVERCODE_BRANCH >> sample.txt
