@@ -1,17 +1,12 @@
 #!/bin/sh
-echo "Starting prebuild script!"
-echo "Working directory: $PWD"
 
-echo "Patching sample.txt...."
-echo $NEVERCODE_BRANCH
+if [[ "$NEVERCODE_BRANCH" =~ "master" ]]; then
+echo `master`
+echo "master BRANCH log!"
+fi
 
-echo "Sample.txt contents:" >> sample.txt
-echo $NEVERCODE_BRANCH >> sample.txt
-
-cat sample.txt
-git config --global user.name "Justin"
-git config --global user.email justinminh225@gmail.com
-git add .
-git commit -m 'Production Build'
-git push
+if [[ "$NEVERCODE_BRANCH" =~ "qa" ]]; then
+echo `qa`
+echo "qa BRANCH log!"
+fi
 
