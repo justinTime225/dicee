@@ -1,1 +1,1 @@
-static let apiEnvironment = 5 // 0 = Production, 1 = Staging   ///
+Sample text
