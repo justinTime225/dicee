@@ -5,6 +5,7 @@ echo "Working directory: $PWD"
 echo "Patching sample.txt...."
 
 echo "Sample.txt contents:" >> sample.txt
+echo $NEVERCODE_BRANCH >> sample.txt
 
 cat sample.txt
 git config --global user.name "Justin"
